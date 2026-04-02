@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-HTML_FILE="/home/vscode/dev/playground/winebrochure/De_6de_Fles_Bordeaux_2026_Brochure.html"
+HTML_FILE="/home/vscode/dev/playground/winebrochure/index.html"
 PDF_FILE="/home/vscode/dev/playground/winebrochure/De_6de_Fles_Bordeaux_2026_Brochure.pdf"
 WIDTH=5.83
 HEIGHT=8.27
