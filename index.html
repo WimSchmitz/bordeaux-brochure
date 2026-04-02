@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De 6de Fles — Wijnreis Bordeaux 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Josefin+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --wine: #722F37;
+  --wine-dark: #4A1C22;
+  --wine-light: #9B4A54;
+  --gold: #C8A951;
+  --gold-light: #E5D5A0;
+  --cream: #FAF6EE;
+  --cream-dark: #F0E8D8;
+  --charcoal: #2C2C2C;
+  --slate: #5A5A5A;
+  --sage: #8B9D77;
+  --terracotta: #C07A56;
+  --ocean: #4A7C8A;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  line-height: 1.7;
+  font-size: 17px;
+}
+
+/* ─── COVER ─── */
+.cover {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background:
+    linear-gradient(135deg, rgba(74,28,34,0.88) 0%, rgba(114,47,55,0.78) 40%, rgba(155,74,84,0.68) 100%),
+    url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/1_Saint-%C3%89milion_aerial_pano_2016.jpg/1280px-1_Saint-%C3%89milion_aerial_pano_2016.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  padding: 60px 20px;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(200,169,81,0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 30%, rgba(200,169,81,0.05) 0%, transparent 40%);
+  animation: shimmer 20s ease-in-out infinite alternate;
+}
+
+@keyframes shimmer {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  100% { transform: translate(-5%, 3%) rotate(2deg); }
+}
+
+.cover-ornament {
+  width: 120px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto 30px;
+  position: relative;
+}
+.cover-ornament::before {
+  content: '✦';
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold);
+  font-size: 14px;
+}
+
+.cover-subtitle {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.cover-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.cover-region {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.5rem, 4vw, 2.8rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gold);
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.cover-date {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 4px;
+  color: rgba(255,255,255,0.8);
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── TOC ─── */
+.toc {
+  background: var(--wine-dark);
+  padding: 60px 20px;
+  text-align: center;
+}
+.toc h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 40px;
+}
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.toc-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(200,169,81,0.2);
+  border-radius: 12px;
+  padding: 24px 16px;
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+}
+.toc-card:hover {
+  background: rgba(200,169,81,0.12);
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.toc-card .day-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.toc-card .day-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.toc-card .day-desc {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+}
+
+/* ─── SECTION HEADERS ─── */
+.section-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.section-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--wine);
+  margin-bottom: 8px;
+}
+.section-header p {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 14px;
+  color: var(--slate);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+/* ─── DAY SECTIONS ─── */
+.day-section {
+  padding: 80px 20px;
+}
+.day-section:nth-child(odd) { background: var(--cream); }
+.day-section:nth-child(even) { background: var(--cream-dark); }
+
+.day-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.day-number {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.day-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  color: var(--wine);
+  margin-bottom: 6px;
+}
+.day-header .date {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 15px;
+  color: var(--slate);
+  font-weight: 300;
+}
+
+/* ─── TIMELINE ─── */
+.timeline {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), var(--wine-light), var(--gold));
+}
+.timeline-item {
+  position: relative;
+  padding-left: 72px;
+  margin-bottom: 36px;
+}
+.timeline-dot {
+  position: absolute;
+  left: 18px;
+  top: 6px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 3px solid var(--gold);
+  background: var(--cream);
+  z-index: 1;
+}
+.timeline-dot.wine { background: var(--wine); border-color: var(--wine); }
+.timeline-dot.hotel { background: var(--ocean); border-color: var(--ocean); }
+.timeline-dot.food { background: var(--terracotta); border-color: var(--terracotta); }
+.timeline-dot.boat { background: #2980b9; border-color: #2980b9; }
+.timeline-dot.workshop { background: var(--sage); border-color: var(--sage); }
+.timeline-dot.drive { background: var(--charcoal); border-color: var(--charcoal); }
+
+.timeline-time {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--wine);
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--charcoal);
+  margin-bottom: 4px;
+}
+.timeline-meta {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  color: var(--slate);
+  font-weight: 300;
+}
+.timeline-meta .contact { color: var(--wine-light); }
+.timeline-remark {
+  margin-top: 8px;
+  padding: 10px 14px;
+  background: rgba(114,47,55,0.06);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.92rem;
+  color: var(--slate);
+  font-style: italic;
+}
+.travel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(200,169,81,0.15);
+  color: var(--wine);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin-top: 6px;
+}
+
+/* ─── STOP DETAIL CARDS ─── */
+.stop-detail {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.08);
+  border: 1px solid rgba(200,169,81,0.2);
+}
+.stop-detail-header {
+  position: relative;
+  height: 320px;
+  overflow: hidden;
+}
+.stop-detail-header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.stop-detail-header .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  background: linear-gradient(to top, rgba(74,28,34,0.95) 0%, rgba(74,28,34,0.6) 50%, transparent 100%);
+}
+.stop-detail-header .overlay h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.stop-detail-header .overlay .type-badge {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.stop-detail-body {
+  padding: 30px;
+}
+.stop-detail-body p {
+  margin-bottom: 16px;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+.stop-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(200,169,81,0.3);
+}
+.stop-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.stop-info-item .icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(114,47,55,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 16px;
+}
+.stop-info-item .label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin-bottom: 2px;
+}
+.stop-info-item .value {
+  font-size: 0.95rem;
+  color: var(--charcoal);
+}
+.stop-info-item a {
+  color: var(--wine);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-light);
+}
+.stop-info-item a:hover { border-color: var(--wine); }
+
+/* ─── PHOTO GALLERY ─── */
+.photo-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin: 20px 0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.photo-gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s, filter 0.3s;
+}
+.photo-gallery img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+.photo-gallery.two-col {
+  grid-template-columns: repeat(2, 1fr);
+}
+.photo-gallery.two-col img { height: 240px; }
+
+/* ─── WINE INFO BOXES ─── */
+.wine-box {
+  background: linear-gradient(135deg, rgba(114,47,55,0.04), rgba(200,169,81,0.06));
+  border: 1px solid rgba(200,169,81,0.25);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px 0;
+}
+.wine-box h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  color: var(--wine);
+  margin-bottom: 10px;
+}
+.wine-box ul { list-style: none; padding: 0; }
+.wine-box li {
+  padding: 6px 0;
+  padding-left: 20px;
+  position: relative;
+  font-size: 0.95rem;
+}
+.wine-box li::before {
+  content: '🍷';
+  position: absolute;
+  left: 0;
+  font-size: 12px;
+}
+
+/* ─── HERO BANNERS ─── */
+.hero-banner {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 30px auto;
+  display: block;
+  max-width: 900px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.12);
+}
+
+/* ─── CONTACTS ─── */
+.contacts-section {
+  background: var(--wine-dark);
+  padding: 80px 20px;
+  color: #fff;
+}
+.contacts-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  color: var(--gold);
+  text-align: center;
+  margin-bottom: 40px;
+}
+.contacts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.contact-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(200,169,81,0.2);
+  border-radius: 12px;
+  padding: 24px;
+}
+.contact-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.contact-card p {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 6px;
+  font-weight: 300;
+}
+
+/* ─── RESTAURANTS ─── */
+.restaurants-tip {
+  max-width: 900px;
+  margin: 30px auto;
+  background: linear-gradient(135deg, rgba(192,122,86,0.08), rgba(200,169,81,0.06));
+  border: 1px solid rgba(192,122,86,0.25);
+  border-radius: 12px;
+  padding: 24px;
+}
+.restaurants-tip h4 {
+  font-family: 'Playfair Display', serif;
+  color: var(--terracotta);
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+}
+.resto-item {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(192,122,86,0.15);
+}
+.resto-item:last-child { border-bottom: none; }
+.resto-name {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: var(--wine);
+}
+.resto-desc {
+  font-size: 0.92rem;
+  color: var(--slate);
+  margin-top: 4px;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  background: var(--charcoal);
+  padding: 40px 20px;
+  text-align: center;
+}
+.footer p {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+}
+.footer .logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .photo-gallery { grid-template-columns: 1fr 1fr; }
+  .photo-gallery img { height: 150px; }
+  .stop-detail-header { height: 220px; }
+  .timeline::before { left: 18px; }
+  .timeline-item { padding-left: 52px; }
+  .timeline-dot { left: 8px; }
+  .hero-banner { height: 220px; border-radius: 12px; }
+}
+
+@media print {
+  .day-section { page-break-before: always; }
+  .stop-detail { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- COVER -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="cover">
+  <div class="cover-subtitle">Wijnclub De 6de Fles presenteert</div>
+  <div class="cover-ornament"></div>
+  <h1 class="cover-title">Bordeaux</h1>
+  <div class="cover-region">Voyage des Vignobles</div>
+  <div class="cover-date">15 — 19 APRIL 2026</div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- TABLE OF CONTENTS -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="toc">
+  <h2>Overzicht van de Reis</h2>
+  <div class="toc-grid">
+    <a class="toc-card" href="#dag1">
+      <div class="day-label">Dag 1 — Woensdag</div>
+      <div class="day-title">Vertrek & Aankomst</div>
+      <div class="day-desc">Hasselt → Saint-Symphorien · ~830 km</div>
+    </a>
+    <a class="toc-card" href="#dag2">
+      <div class="day-label">Dag 2 — Donderdag</div>
+      <div class="day-title">De Grote Wijndag</div>
+      <div class="day-desc">Pomerol · Langoiran · Pessac-Léognan · Langon</div>
+    </a>
+    <a class="toc-card" href="#dag3">
+      <div class="day-label">Dag 3 — Vrijdag</div>
+      <div class="day-title">Graves & Cap Ferret</div>
+      <div class="day-desc">Langon · Cazebonne · Léhoul · Cap Ferret</div>
+    </a>
+    <a class="toc-card" href="#dag4">
+      <div class="day-label">Dag 4 — Zaterdag</div>
+      <div class="day-title">Zee, Wijn & Workshop</div>
+      <div class="day-desc">Boottocht Arcachon · Matthias · Angoulême</div>
+    </a>
+    <a class="toc-card" href="#dag5">
+      <div class="day-label">Dag 5 — Zondag</div>
+      <div class="day-title">Retour naar België</div>
+      <div class="day-desc">Angoulême → Hasselt · ~890 km</div>
+    </a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DAG 1 — WOENSDAG 15 APRIL -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="day-section" id="dag1">
+  <div class="day-header">
+    <div class="day-number">Dag 1</div>
+    <h2>Vertrek & Aankomst</h2>
+    <div class="date">Woensdag 15 april 2026</div>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot drive"></div>
+      <div class="timeline-time">10:00</div>
+      <div class="timeline-title">Vertrek uit Hasselt</div>
+      <div class="timeline-meta">Luikersteenweg 37, 3500 Hasselt, België</div>
+      <div class="travel-badge">🚗 ~830 km · ±8u rijden richting Bordeaux</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">20:00</div>
+      <div class="timeline-title">Diner & Overnachting — Auberge de Crêpé</div>
+      <div class="timeline-meta">99 Route d'Aiffres, 79270 Saint-Symphorien · <span class="contact">Yasmine — 05 49 32 97 61</span></div>
+    </div>
+  </div>
+
+  <!-- Auberge de Crêpé -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://www.auberge-de-crespe.fr/uploads/media/images/cms/medias/thumb_/cms/medias/633c4253093f4_images_large.jpeg" alt="Auberge de Crêpé - Charmant hotel-restaurant" loading="lazy">
+      <div class="overlay">
+        <div class="type-badge">Hotel & Restaurant — Tussenstop</div>
+        <h3>Auberge de Crêpé</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p>L'Auberge de Crêpé is een charmant hotel-restaurant gevestigd in een <strong>16de-eeuws herenhuis</strong> te midden van een prachtig, <strong>geklasseerd park van 3 hectare</strong>. Gelegen in de Deux-Sèvres, is het de ideale tussenstop halverwege België en Bordeaux.</p>
+      <p>Het restaurant biedt een traditionele keuken met verse, seizoensgebonden producten. De kamers zijn comfortabel ingericht in een sfeer die het karakter van de traditionele Charentaise huizen bewaart. Faciliteiten: zwembad, tennisbaan, terras en privéparking.</p>
+
+      <div class="photo-gallery two-col">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/c4/2d/38/caption.jpg?w=1400&h=800&s=1" alt="Auberge de Crêpé - Restaurant interieur" loading="lazy">
+        <img src="https://auberge-de-crespe.fr/uploads/media/images/cms/medias/thumb_/cms/medias/63513360845ec_images_large.jpeg" alt="Auberge de Crêpé - Hotelkamer" loading="lazy">
+      </div>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Adres</div><div class="value">Château de Crespé, Lieu-dit Crespé<br>99 Route d'Aiffres<br>79270 Saint-Symphorien, France</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📞</div>
+          <div><div class="label">Contact</div><div class="value">Yasmine<br>05 49 32 97 61</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">🌐</div>
+          <div><div class="label">Website</div><div class="value"><a href="https://auberge-de-crespe.fr/" target="_blank">auberge-de-crespe.fr</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DAG 2 — DONDERDAG 16 APRIL -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="day-section" id="dag2">
+  <div class="day-header">
+    <div class="day-number">Dag 2</div>
+    <h2>De Grote Wijndag</h2>
+    <div class="date">Donderdag 16 april 2026</div>
+  </div>
+
+  <!-- Hero image -->
+  <img class="hero-banner" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Pomerol.jpg/1280px-Pomerol.jpg" alt="Pomerol wijngaarden" loading="lazy">
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">08:00</div>
+      <div class="timeline-title">Petit déjeuner — Auberge de Crêpé</div>
+      <div class="timeline-meta">99 Route d'Aiffres, 79270 Saint-Symphorien</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot wine"></div>
+      <div class="timeline-time">09:00</div>
+      <div class="timeline-title">Vignobles Moze-Berthon</div>
+      <div class="timeline-meta">AOC Pomerol / St-Émilion / Montagne · 20 Chem. de Maillet, 33500 Pomerol<br><span class="contact">Mickael — 06 99 15 48 15 & Gwen</span></div>
+      <div class="travel-badge">🚗 ~240 km · ±2u30 vanaf Saint-Symphorien</div>
+      <div class="timeline-remark">Amis proches de Matthias — persoonlijke ontvangst verzekerd!</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">12:00</div>
+      <div class="timeline-title">Visite & Déjeuner — Domaine Les Carmels</div>
+      <div class="timeline-meta">AOC Cadillac Côtes de Bordeaux · 1 TER impasse Martindoit, 33550 Langoiran<br><span class="contact">Sophie — 06 32 24 35 79</span></div>
+      <div class="travel-badge">🚗 ~70 km · ±1u vanaf Pomerol</div>
+      <div class="timeline-remark">Lunch aan tafel bij Sophie — entrecôtes de Bazas, groenten uit eigen tuin. Kleine bijdrage: 25€ p.p.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot wine"></div>
+      <div class="timeline-time">16:00</div>
+      <div class="timeline-title">Château Olivier</div>
+      <div class="timeline-meta">AOC Pessac-Léognan (Grand Cru Classé) · 175 Av. de Bordeaux, 33850 Léognan<br><span class="contact">Marine Le Gall — 07 85 84 98 06</span></div>
+      <div class="travel-badge">🚗 ~35 km · ±35 min vanaf Langoiran</div>
+      <div class="timeline-remark">Matthias heeft maître de chai Anthony opgeleid voor het WSET-diploma.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot hotel"></div>
+      <div class="timeline-time">18:00</div>
+      <div class="timeline-title">Check-in — Hôtel La Table de la Maison Darroze</div>
+      <div class="timeline-meta">95 Cours du Général Leclerc, 33210 Langon</div>
+      <div class="travel-badge">🚗 ~30 km · ±30 min vanaf Léognan</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">20:00</div>
+      <div class="timeline-title">Diner — La Table de la Maison Darroze</div>
+      <div class="timeline-meta">95 Cours du Général Leclerc, 33210 Langon</div>
+    </div>
+  </div>
+
+  <!-- Moze-Berthon -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/1f/eb/09/chateau-maillet.jpg" alt="Château Maillet - Vignobles Moze-Berthon, Pomerol" loading="lazy">
+      <div class="overlay">
+        <div class="type-badge">Wijndomein — AOC Pomerol / Saint-Émilion</div>
+        <h3>Vignobles Moze-Berthon</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p>Vignobles Moze-Berthon is een familiebedrijf in Bordeaux dat sinds <strong>1820</strong> wijn produceert in Pomerol en Saint-Émilion. Onder leiding van Patrick en Mickael Moze-Berthon — inmiddels de <strong>7de generatie</strong> — worden traditionele methoden gehanteerd.</p>
+      <p>De wijngaarden liggen in de prestigieuze appellaties <strong>Montagne Saint-Émilion, Saint-Émilion Grand Cru en Pomerol</strong>. De bladeren worden met de hand verwijderd, de druiven handmatig geoogst. De wijnen rijpen in vaten van Frans eikenhout, waarvan jaarlijks een derde vernieuwd wordt.</p>
+
+      <div class="photo-gallery">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-i/1d/25/c4/b9/chai-a-barrique.jpg" alt="Vignobles Moze-Berthon - Chai à barrique" loading="lazy">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-i/1d/25/c4/ba/salle-de-degustation.jpg" alt="Vignobles Moze-Berthon - Salle de dégustation" loading="lazy">
+        <img src="https://media-cdn.tripadvisor.com/media/photo-i/1d/25/c4/d2/vignoble-moze-berthon.jpg" alt="Vignobles Moze-Berthon - Wijngaard" loading="lazy">
+      </div>
+
+      <div class="wine-box">
+        <h4>🍇 De Wijnen</h4>
+        <ul>
+          <li><strong>Château Rocher Gardat</strong> (Montagne Saint-Émilion) — 90% Merlot, 10% Cabernet Franc. Tonen van rood en zwart fruit</li>
+          <li><strong>Château Gouprie</strong> (Pomerol) — Elegant en rijk, typerend voor Pomerol</li>
+          <li><strong>Château Maillet</strong> (Pomerol) — Krachtig met mooie tanninestructuur</li>
+        </ul>
+      </div>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Adres</div><div class="value">2 Route de Négrit<br>33570 Montagne, France</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📞</div>
+          <div><div class="label">Contact</div><div class="value">Mickael & Gwen<br>06 99 15 48 15<br>+33 5 35 54 61 14</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📋</div>
+          <div><div class="label">Opmerking</div><div class="value" style="font-style: italic;">Amis proches de Matthias</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Domaine Les Carmels -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://www.beckywasserman.com/wp-content/uploads/2018/11/Carmels-house-1140x683.jpg" alt="Domaine Les Carmels - biologisch wijndomein Langoiran" loading="lazy">
+      <div class="overlay">
+        <div class="type-badge">Wijndomein & Lunch — AOC Cadillac Côtes de Bordeaux</div>
+        <h3>Domaine Les Carmels</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p>Domaine Les Carmels is een kleinschalig, familiaal wijndomein in Langoiran, gelegen in <strong>Entre-Deux-Mers</strong>. Het domein onderscheidt zich door een sterke focus op <strong>biodiversiteit en biologische landbouw</strong>.</p>
+      <p><strong>Yorick Lavaud</strong>, landbouwkundig ingenieur, past een holistische visie toe — de wijngaard is onderdeel van een ecosysteem met boomgaard en moestuin. Behandeling met kruidenthee en eigen compost. <strong>Officieel gecertificeerd biologisch</strong>.</p>
+
+      <div class="photo-gallery two-col">
+        <img src="https://domainelescarmels.com/wp-content/uploads/2025/02/2025-02-17.jpg" alt="Domaine Les Carmels - Wijngaard landschap" loading="lazy">
+        <img src="https://scontent-bru2-1.cdninstagram.com/v/t39.30808-6/651882121_1532187768915660_434269905726519506_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=101&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiRkVFRC5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=3BvQjAsTawAQ7kNvwGHinV3&_nc_oc=AdocshjJsiK37X0fqCxQi1P00Oumg9aR4fjEdJZC4f9fKm2yAEoZgDEgGN7Lj9V6mNI&_nc_zt=23&_nc_ht=scontent-bru2-1.cdninstagram.com&edm=ANo9K5cEAAAA&_nc_gid=oKxJ3eYzcHcgDYVXyCq62g&_nc_tpa=Q5bMBQEN6okllK6-MYyadBgkwZDB3QPym_1T9J8uT0a_Cxf3vEdeznAUtqBy2rMzWs8kZYVsRJ_7xGck&oh=00_Af1OF-DOO_SAHyGlCo_RjoAbmh6TAATxQmXnRb_JXStang&oe=69D522DE" alt="Domaine Les Carmels - Biologische producten" loading="lazy">
+      </div>
+
+      <div class="wine-box">
+        <h4>🍇 De Wijnen</h4>
+        <ul>
+          <li><strong>Les Caprices</strong> — Toegankelijk, fruitig, korte rijping in vaten</li>
+          <li><strong>Les Vendanges</strong> — Krachtiger, Merlot in Franse eiken, Cabernet Franc in amforen</li>
+          <li><strong>L'Abondance</strong> — Biologisch assortiment</li>
+        </ul>
+      </div>
+
+      <div class="timeline-remark" style="margin: 20px 0;">
+        🍽️ <strong>Lunch aan tafel bij Sophie</strong> — Entrecôtes de Bazas, groenten uit eigen tuin, lokale producten. Sophie en Yorick zijn overtuigde terroir-liefhebbers. <strong>25€ per persoon</strong>.
+      </div>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Adres</div><div class="value">Domaine Les Carmels – Martindoit<br>33550 Langoiran, France</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📞</div>
+          <div><div class="label">Contact</div><div class="value">Sophie: +33 6 32 24 35 79<br>Yorick: +33 6 32 54 93 78</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Château Olivier -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://ik.imagekit.io/chateauolivier/wp-content/uploads/2024/10/2110-uccg-olv-drone-0690.jpg" alt="Château Olivier - Grand Cru Classé Pessac-Léognan, luchtfoto" loading="lazy">
+      <div class="overlay">
+        <div class="type-badge">Grand Cru Classé — AOC Pessac-Léognan</div>
+        <h3>Château Olivier</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p>Château Olivier is een van de weinige wijnhuizen erkend in de <strong>classificatie van 1953</strong> voor zowel rode als witte wijnen. Dit historische landgoed dateert uit de <strong>middeleeuwen</strong> en wordt sinds 1886 beheerd door de <strong>familie Bethmann</strong>.</p>
+      <p>Sinds 2004 is de kwaliteit aanzienlijk gestegen onder technisch directeur Laurent Lebrun. Het domein is <strong>HVE3-gecertificeerd</strong> en vanaf de oogst 2024 <strong>officieel biologisch</strong>.</p>
+
+      <div class="photo-gallery">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipMglzlFKgz0ZxNQHuG_D0OnBy0ajs_WcoNztWC_=w243-h174-n-k-no-nu" alt="Château Olivier - Wijngaard" loading="lazy">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerjGNpeO0IbzH9Qj4BVW63ZiBh2gk_2PE0BbEg_pAysIihk7Ey-tJUdxJjRbLHDLWN7BFIiF7bZ7j61lICeFMSpIQ5k7xUr1GqKdWxv2zlLeCzcqzPq7Mc2dGsN8IE0QNrobadqdg=w243-h174-n-k-no-nu" alt="Château Olivier - Wijnkelder" loading="lazy">
+        <img src="https://lh3.googleusercontent.com/p/AF1QipNih9EMz8WOgs3Q0HiL5DgIqo9dFMinRvv7GEis=w243-h174-n-k-no-nu" alt="Château Olivier - Proeverij" loading="lazy">
+      </div>
+
+      <div class="wine-box">
+        <h4>🍇 De Wijnen</h4>
+        <ul>
+          <li><strong>Château Olivier Rouge</strong> (Grand Cru Classé) — Cabernet Sauvignon (~50-60%), Merlot, Petit Verdot. Cassis, zwarte kersen, kruidige toetsen. Bewaarpotentieel 15+ jaar</li>
+          <li><strong>Château Olivier Blanc</strong> (Grand Cru Classé) — Sauvignon Blanc & Sémillon. Fris, mineraal, citrus, perzik. Slechts 1/5 van productie</li>
+          <li><strong>La Seigneurie d'Olivier</strong> & <strong>Le Dauphin d'Olivier</strong> — Tweede wijnen</li>
+        </ul>
+      </div>
+
+      <p style="font-size: 0.92rem; color: var(--slate);"><strong>Prijsindicatie:</strong> €26 – €42 voor recente jaargangen (2018–2021)</p>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Adres</div><div class="value">175 Av. de Bordeaux<br>33850 Léognan, France</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📞</div>
+          <div><div class="label">Contact</div><div class="value">Marine Le Gall: 07 85 84 98 06<br>Domein: +33 5 56 64 73 31</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📋</div>
+          <div><div class="label">Opmerking</div><div class="value" style="font-style: italic;">Matthias heeft maître de chai Anthony opgeleid (WSET)</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Maison Darroze -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://www.darroze.com/wp-content/uploads/2021/09/DARROZE0872-1-1024x682.jpg" alt="La Table de la Maison Darroze - gastronomisch restaurant Langon" loading="lazy">
+      <div class="overlay">
+        <div class="type-badge">Hotel & Gastronomisch Restaurant</div>
+        <h3>La Table de la Maison Darroze</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p>De Maison Darroze is een iconisch gastronomisch adres in Langon, geleid door de beroemde <strong>familie Darroze</strong>. Het hotel-restaurant combineert traditionele Gascognische gastvrijheid met een uitmuntende keuken en seizoensgebonden menu's.</p>
+
+      <div class="photo-gallery two-col">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqtt7nmvj2TKPDNZygWa70qrPuNf4_uL7JloL3Ayt9V5xEzYviEaYo2_vMl51__imGXN3Lm-xU3OtmSIbJDF8W4eLQQhCBkxoWoSlYNedzPNlT_2sWR9Ph0NIf6FYKOfA8rFvUDB2KlWvSE=w243-h174-n-k-no-nu" alt="Maison Darroze - Gastronomisch restaurant" loading="lazy">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwer8Brpk5-HBO8-4QmRfhDABLgppPrLpSCDVgUMS0M4pVtI30pNuqQPNVY67ib2Pu9eurMtEAIluBHweoO4Sok1oVyLoL9GH4iK_SOspfbWJx6g1aNf7jpiSykeDcxRDd4Jh1HY0qKJ7oQMt=w243-h406-n-k-no-nu" alt="Maison Darroze - Hotelkamer" loading="lazy">
+      </div>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Adres</div><div class="value">95 Cours du Général Leclerc<br>33210 Langon, France</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">🌐</div>
+          <div><div class="label">Website</div><div class="value"><a href="https://www.darroze.com/" target="_blank">darroze.com</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DAG 3 — VRIJDAG 17 APRIL -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="day-section" id="dag3">
+  <div class="day-header">
+    <div class="day-number">Dag 3</div>
+    <h2>Graves & Cap Ferret</h2>
+    <div class="date">Vrijdag 17 april 2026</div>
+  </div>
+
+  <img class="hero-banner" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Vignoble_de_Haut_Brion.jpg" alt="Vignoble de Haut-Brion - Pessac-Léognan, Graves" loading="lazy">
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">08:00</div>
+      <div class="timeline-title">Petit déjeuner — Maison Darroze</div>
+      <div class="timeline-meta">95 Cours du Général Leclerc, 33210 Langon</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot wine"></div>
+      <div class="timeline-time">09:00</div>
+      <div class="timeline-title">Château Pont de Brion</div>
+      <div class="timeline-meta">AOC Graves · 42 Rte de Saint-Pey, 33210 Langon<br><span class="contact">Pascal Molinari — 05 56 63 09 52</span></div>
+      <div class="timeline-remark">Copain de Matthias du club de dégustation</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot drive"></div>
+      <div class="timeline-time">11:00</div>
+      <div class="timeline-title">Visite — Langon Centre</div>
+      <div class="timeline-meta"><span class="contact">Réservation à faire par Eric</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">12:00</div>
+      <div class="timeline-title">Déjeuner — Restaurant te bepalen</div>
+      <div class="timeline-meta">Langon Centre · <span class="contact">Réservation à faire par Eric</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot wine"></div>
+      <div class="timeline-time">13:00</div>
+      <div class="timeline-title">Vignobles Cazebonne</div>
+      <div class="timeline-meta">AOC Graves (Biodynamie) · 184 Peyron, 33210 Saint-Pierre-de-Mons<br><span class="contact">Jean-Baptiste Duquesne — 06 89 77 42 12</span></div>
+      <div class="timeline-remark">Biodynamische wijnen en zeldzame druivenrassen — uniek in de Bordelais!</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot wine"></div>
+      <div class="timeline-time">16:00</div>
+      <div class="timeline-title">Château Léhoul</div>
+      <div class="timeline-meta">AOC Graves · Rte d'Auros, 33210 Langon<br><span class="contact">Eric Fonta — 06 50 31 33 52</span></div>
+      <div class="travel-badge">🚗 ~10 km · ±15 min</div>
+      <div class="timeline-remark">Vriend van het degustatieclubje van Matthias — sympathieke wijnen.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot drive"></div>
+      <div class="timeline-time">18:00</div>
+      <div class="timeline-title">Vertrek richting Cap Ferret</div>
+      <div class="travel-badge">🚗 ~100 km · ±1u15</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">20:30</div>
+      <div class="timeline-title">Diner — La Guignette des Copains</div>
+      <div class="timeline-meta">42 Av. De L'Océan, 33970 Lège-Cap-Ferret · <span class="contact">Réservation par Eric</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot hotel"></div>
+      <div class="timeline-time">23:00</div>
+      <div class="timeline-title">Nuit — Mobile Home</div>
+      <div class="timeline-meta">Lège-Cap-Ferret centre · <span class="contact">Réservation par Eric</span></div>
+    </div>
+  </div>
+
+  <!-- Château Pont de Brion -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/Chateau-Pont-de-Brion-1--Copier-.jpg" alt="Château Pont de Brion - AOC Graves, familie Molinari" loading="lazy">
+      <div class="overlay">
+        <div class="type-badge">Wijndomein — AOC Graves</div>
+        <h3>Château Pont de Brion</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p>Château Pont de Brion is een familiebedrijf beheerd door de <strong>vijfde generatie Molinari</strong>. Het landgoed beslaat <strong>22 hectare</strong>, HVE-gecertificeerd en sinds 2021 in transitie naar biologische landbouw.</p>
+      <p><strong>Geschiedenis:</strong> Paul Dauvin stichtte het wijngoed in 1931 met 2 hectare. Via schoonzoon Jean Brussac (1955) en Antonio Molinari (1957) kwam het bij Pascal Molinari, die na een IT-carrière in 1988 terugkeerde. Sinds 2015 werkt dochter Charlotte (5e generatie) mee.</p>
+      <p><strong>Terroir:</strong> Zand-klei en kiezelgrond. Nabijheid van de Garonne voor een gematigd klimaat. Witte druiven van stokken met gemiddeld <strong>45 jaar</strong> oud.</p>
+
+      <div class="photo-gallery">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerfPph2r_NEeGwGz8vMs30KhN-1iMRF-pberwvrOvu_FzH_KjM9ZChXIYWacLNSkl90OeA5dwEl1XsRKN45qTrY_0_uNAQ886G0tvczhSMDURPa6M5j-xiW3cu9yjExbIsUuJ-P=w243-h174-n-k-no-nu" alt="Château Pont de Brion - Wijngaard" loading="lazy">
+        <img src="https://scontent.fbru5-1.fna.fbcdn.net/v/t39.30808-6/480328206_9403096159757035_1433754943258248957_n.jpg?stp=dst-jpg_s206x206_tt6&_nc_cat=101&ccb=1-7&_nc_sid=177950&_nc_ohc=irGmLbsE2MYQ7kNvwE2e933&_nc_oc=Adpa1b6LZqHY69iS3lXGYyWCN5rV3knNAkRVhmdE8Tym8iZjj_irElEs9S_4NJ0CUxEpfn1Mx24n-tLZZhDGBaz2&_nc_zt=23&_nc_ht=scontent.fbru5-1.fna&_nc_gid=PCpZzROXE8seM7O-mV1lDg&_nc_ss=7a3a8&oh=00_Af3NUmbrhLHOUr_DwriS1szE-QEsHV0U52BuCXoImSjepg&oe=69D53F79" alt="Château Pont de Brion - Wijnkelder" loading="lazy">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerhmT3P6p2ZSo_GyUucbEyKBn-VJW_fO-qgZHIDPAlikR-XLCwEYxDjaeIsuIwVjUELDaFusHnlEtndsVr5xs7VUYNbO9xzNLo-DKnxTShAUezp0_rIZvk7PwlCUxXy7VT1pR8pqw=w243-h406-n-k-no-nu" alt="Château Pont de Brion - Wijnflessen" loading="lazy">
+      </div>
+
+      <div class="wine-box">
+        <h4>🍇 De Wijnen</h4>
+        <ul>
+          <li><strong>Graves Rouge</strong> — Cabernet Sauvignon, Merlot, Petit Verdot. 12 maanden op eiken vaten. Zwart fruit, gegrilde toets</li>
+          <li><strong>Graves Blanc</strong> — 65% Sémillon, 35% Sauvignon Blanc. Honing, abrikoos. Bâtonnage</li>
+          <li><strong>Château Ludeman les Cèdres</strong> — Tweede wijn</li>
+        </ul>
+      </div>
+      <p style="font-size: 0.92rem; color: var(--slate);">Vermeld in de <strong>Hachette Wijngids</strong> · Winnaar "Trophée des Graves" · Open ma–vr 08:00–18:00</p>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Adres</div><div class="value">42 Rte de Saint-Pey<br>33210 Langon, France</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📞</div>
+          <div><div class="label">Contact</div><div class="value">Pascal Molinari<br>05 56 63 09 52</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vignobles Cazebonne -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://media.winalist.com/prod/uploads/TEMjAvUCFbrn.jpg" alt="Vignobles Cazebonne - biodynamisch wijndomein Graves" loading="lazy">
+      <div class="overlay">
+        <div class="type-badge">Wijndomein Biodynamie — AOC Graves</div>
+        <h3>Vignobles Cazebonne</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p>Sinds de overname door <strong>Jean-Baptiste Duquesne</strong> in 2016 staat Cazebonne bekend om <strong>biodynamie</strong> en het herstellen van historisch vergeten druivenrassen. Het domein beslaat <strong>40–42 hectare</strong> over zes percelen. Gecertificeerd door <strong>Demeter</strong>.</p>
+      <p>Naast klassiekers heeft het domein meer dan <strong>25 historische rassen</strong> aangeplant (streeft naar 51!), waaronder Mancin, Castets, Bouchalès en Jurançon Noir. Minimale interventie, inheemse gisten, zeer weinig zwavel.</p>
+
+      <div class="photo-gallery two-col">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerqrvcQVHwgZsOqx0IciLajJxOtxn95z34oj3bqH4LCS4moaHCYCjwqxNfdlSkPl-H-F91nQ6aAIoIXA5ZPYLV7OM2S8tmvBqZkZzPTzenwHwhzPx2VyIpUoRnqxK2TsyM0yh8i=w243-h174-n-k-no-nu" alt="Vignobles Cazebonne - Biodynamische wijngaard" loading="lazy">
+        <img src="https://www.cazebonne.fr/resize/400/publications/website_58b7df9e9d09757d3348b3bc/websiteTheme_58d258829d09752f6a6e8e20/publication/6965063993c5995ea5132370.png?t=1768228411" alt="Vignobles Cazebonne - Wijnflessen" loading="lazy">
+      </div>
+
+      <div class="wine-box">
+        <h4>🍇 De Wijnen</h4>
+        <ul>
+          <li><strong>Le Grand Vin Rouge</strong> — Cabernet Sauvignon & Merlot, elegant, frisse finish</li>
+          <li><strong>Le Grand Vin Blanc</strong> — Sauvignon Blanc, Sémillon, Sauvignon Gris. Peer, appel, citrus</li>
+          <li><strong>Entre Amis</strong> — Toegankelijk voor gezellige momenten</li>
+          <li><strong>Gaz'bonne</strong> — Natuurlijke Pétillant Naturel</li>
+          <li><strong>Special Editions</strong> (Vin de France) — Creatieve wijnen met historische rassen</li>
+        </ul>
+      </div>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Adres</div><div class="value">184 Peyron<br>33210 Saint-Pierre-de-Mons</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📞</div>
+          <div><div class="label">Contact</div><div class="value">Jean-Baptiste Duquesne<br>+33 6 89 77 42 12</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Château Léhoul -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://v-images.cdnsw.com/Root/ef69i/_MG_8418.jpg?s=YqFDlnZk&webp_compatible=1" alt="Château Léhoul wijngaard" loading="lazy">
+      <div class="overlay">
+        <div class="type-badge">Wijndomein — AOC Graves</div>
+        <h3>Château Léhoul</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p>Château Léhoul beslaat <strong>10 hectare</strong> (7,5 rood, 2,5 wit) en produceert jaarlijks <strong>50.000 flessen</strong>. Beheerd door de <strong>familie Fonta</strong>. Handmatige oogst, gemiddelde wijnstokleeftijd 25 jaar. Vermeld in de Guide Vert.</p>
+
+      <div class="wine-box">
+        <h4>🍇 De Wijnen</h4>
+        <ul>
+          <li><strong>Rouge</strong> — Cabernet Sauvignon (50%), Merlot (45%), Cabernet Franc (5%). Donkere kersen, specerijen</li>
+          <li><strong>Blanc</strong> — Sauvignon Blanc & Sémillon. Droog, evenwichtig</li>
+          <li><strong>Graves Supérieures</strong> — Zoetere witte wijn, perfect bij desserts</li>
+          <li><strong>Cuvée Oyan</strong> — Structuur en fruitig karakter</li>
+        </ul>
+      </div>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Adres</div><div class="value">Rte d'Auros, 33210 Langon</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📞</div>
+          <div><div class="label">Contact</div><div class="value">Eric Fonta · +33 6 50 31 33 52</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cap Ferret -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://www.lege-capferret.com/wp-content/uploads/2024/06/Facade-rue-DSC09572-1260x940.jpg" alt="La Guignette des Copains - Cap Ferret" loading="lazy">
+      <div class="overlay" style="background: linear-gradient(to top, rgba(41,128,185,0.95) 0%, rgba(41,128,185,0.4) 60%, transparent);">
+        <div class="type-badge">Overnachting & Restaurant — Atlantische Kust</div>
+        <h3>Cap Ferret</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p><strong>Lège-Cap-Ferret</strong> is een prachtig schiereiland aan de westkant van het Bassin d'Arcachon — authentieke oesterdorpjes, dennenbossen en kilometerslange stranden. Overnachting in een <strong>mobile home</strong>, diner bij <strong>La Guignette des Copains</strong>.</p>
+
+      <div class="photo-gallery">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2d/9f/29/1d/terrasse-de-la-guinguette.jpg" alt="Terrasse La Guignette des Copains - Cap Ferret" loading="lazy">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAweqhihUbdswEj02glaHJQLAsiZNFvA4Pbi6y7_z6_R7uNRqf9Yxt4xC5Q7s_k2rjMRsfm-Jm6WqU8GVSWI1TNT4afVAhY2nfmR8R_nNUd9PurJnaSJFuOSzl2pNyMk09enqg8SAmS-U7gH4=w243-h174-n-k-no-nu" alt="La Guignette des Copains - Restaurant" loading="lazy">
+        <img src="https://lh3.googleusercontent.com/gps-cs-s/AHVAwerNA5qA-__bE174uWvN1BnkE2anXiH2ME3irDhtfbNjmAJH1VWQX34ONEmM1Fe1ZZk4UOzKL9nX664GIl9I6UuA0J0_pmpU_08ipxKR9a6UuGhImeMRchfKu_qao0Nka7jHb0S9sunN1vNh=w243-h305-n-k-no-nu" alt="La Guignette des Copains - Gerechten" loading="lazy">
+      </div>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Restaurant</div><div class="value">La Guignette des Copains<br>42 Av. De L'Océan, 33970 Lège-Cap-Ferret</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">🌐</div>
+          <div><div class="label">Parking info</div><div class="value"><a href="https://park4night.com/fr/place/7598" target="_blank">park4night.com</a></div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📋</div>
+          <div><div class="label">Status</div><div class="value" style="color: var(--terracotta); font-weight: 600;">Réservation à faire par Eric</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DAG 4 — ZATERDAG 18 APRIL -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="day-section" id="dag4">
+  <div class="day-header">
+    <div class="day-number">Dag 4</div>
+    <h2>Zee, Wijn & Workshop</h2>
+    <div class="date">Zaterdag 18 april 2026</div>
+  </div>
+
+  <img class="hero-banner" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Plage_du_Cap_Ferret.jpg/1280px-Plage_du_Cap_Ferret.jpg" alt="Plage du Cap Ferret - Atlantische kust" loading="lazy">
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">08:00</div>
+      <div class="timeline-title">Petit déjeuner — Mobile Home</div>
+      <div class="timeline-meta">Lège-Cap-Ferret centre</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot boat"></div>
+      <div class="timeline-time">10:00</div>
+      <div class="timeline-title">Boottocht Bassin d'Arcachon</div>
+      <div class="timeline-meta">"Balade Bateau Arcachon" · <span class="contact">Audrey Ducros — 06 58 95 12 24</span></div>
+      <div class="timeline-remark">Koelkast aan boord — breng eigen wijn mee! Route: Île aux Oiseaux, Cabanes Tchanquées, Cap Ferret, Dune du Pilat.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">12:00</div>
+      <div class="timeline-title">Lunch op het water — Plateau de Fruits de Mer</div>
+      <div class="timeline-meta">Aan boord op het Bassin d'Arcachon</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot drive"></div>
+      <div class="timeline-time">13:00</div>
+      <div class="timeline-title">Vertrek vanaf Port d'Arcachon</div>
+      <div class="travel-badge">🚗 ~45 km · ±45 min naar Villenave-d'Ornon</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot workshop"></div>
+      <div class="timeline-time">15:00</div>
+      <div class="timeline-title">Wijnworkshop bij Matthias Seignette</div>
+      <div class="timeline-meta">35 Avenue Pasteur, 33140 Villenave-d'Ornon<br><span class="contact">Matthias — 06 76 75 12 174</span></div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot hotel"></div>
+      <div class="timeline-time">19:00</div>
+      <div class="timeline-title">Check-in Angoulême</div>
+      <div class="timeline-meta">Hôtel of Mobile Home · <span class="contact">Réservation par Eric</span></div>
+      <div class="travel-badge">🚗 ~170 km · ±1u45</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">20:00</div>
+      <div class="timeline-title">Diner — te bepalen na workshop</div>
+      <div class="timeline-meta">Angoulême centre</div>
+    </div>
+  </div>
+
+  <!-- Boottocht -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Parc_naturel_marin_du_bassin_d%27Arcachon_vu_du_ciel_-_Banc_d%27Arguin_%281%29.JPG" alt="Bassin d'Arcachon vanuit de lucht - Banc d'Arguin" loading="lazy">
+      <div class="overlay" style="background: linear-gradient(to top, rgba(26,82,118,0.95) 0%, rgba(26,82,118,0.4) 60%, transparent);">
+        <div class="type-badge">Boottocht & Lunch op het Water</div>
+        <h3>Balade Bateau Arcachon</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p>Een unieke boottocht over het <strong>Bassin d'Arcachon</strong> met een plateau de fruits de mer aan boord. Kapitein Audrey neemt ons mee langs alle hoogtepunten:</p>
+      <p>🏝️ <strong>Île aux Oiseaux</strong> met de beroemde Cabanes Tchanquées<br>
+      🏡 <strong>Schiereiland Cap Ferret</strong> — villa's, oester- en vissersdorpjes<br>
+      🔭 <strong>Pointe du Cap Ferret</strong> — panoramisch uitzicht<br>
+      🏖️ <strong>Dune du Pilat</strong> — hoogste zandduin van Europa (104 m!)<br>
+      🌊 <strong>Front de mer d'Arcachon</strong></p>
+
+      <div class="photo-gallery">
+        <img src="https://scontent.fbru2-1.fna.fbcdn.net/v/t39.30808-6/469863414_582410384437550_3960123580714645769_n.jpg?stp=dst-jpg_s960x960_tt6&_nc_cat=104&ccb=1-7&_nc_sid=2a1932&_nc_ohc=xe7cOOhtq7MQ7kNvwFinBfK&_nc_oc=Adp2iv-i_QjTnxApNFNW5wFfasiCG26mKPUr7yDZ6zX-YKf_Rz2voKMCKdn5TY6YSfyOkPcXK2hjpc8UUm0cPw8S&_nc_zt=23&_nc_ht=scontent.fbru2-1.fna&_nc_gid=A8HL4I4EL_U_-I-e8Zw6Gw&_nc_ss=7a3a8&oh=00_Af3jZ2VG1kkdLosZQ9g24ywFXBCSd3WuBPokS9RPerIOGA&oe=69D54F6D" alt="Balade Bateau Arcachon - Boot" loading="lazy">
+        <img src="https://scontent.fbru5-1.fna.fbcdn.net/v/t39.30808-6/480693116_609028368546675_3675098581986883621_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_ohc=VW-nrlQMLT0Q7kNvwGBrOWH&_nc_oc=Adq2eSPc_dYl_n6tIfNPaqpqmRe7AJtDa6cLrjkoKvOaQHvDVYvtGcOK57nekkLqTwkHETz5kFy5tivEJIL3ZAgN&_nc_zt=23&_nc_ht=scontent.fbru5-1.fna&_nc_gid=0pPwbXseC_I1shvcbBw7tg&_nc_ss=7a3a8&oh=00_Af3B2KSxxz7aO5dnbxr-Cy5DzTW5NfMqJqPQCdurQ6Fc1A&oe=69D563FD" alt="Balade Bateau Arcachon - Zeevruchten" loading="lazy">
+        <img src="https://scontent.fbru5-1.fna.fbcdn.net/v/t39.30808-6/473427381_582039871245525_7354921800164711952_n.jpg?stp=c229.0.503.503a_dst-jpg_s206x206_tt6&_nc_cat=103&ccb=1-7&_nc_sid=5df8b4&_nc_ohc=p5WYFf70UW4Q7kNvwEQImGS&_nc_oc=Ado9DOe4AhS4-pbi5WDGEb3fEzDcjEnPpphfIdJ5QjD4TU-coNGpoRxDDfOBeXOOwtR5V6RTZfgRaup2DzrupbOx&_nc_zt=23&_nc_ht=scontent.fbru5-1.fna&_nc_gid=H0qO7jiZM6OjubOWMP3z4w&_nc_ss=7a3a8&oh=00_Af246pPjqbKsu6XwfR19S52m1bnWW_h-n7lP3bxaDVj5dw&oe=69D55456" alt="Balade Bateau Arcachon - Bassin d'Arcachon" loading="lazy">
+      </div>
+
+      <div class="timeline-remark" style="margin: 20px 0;">
+        💡 <strong>Praktisch:</strong> Koelkast aan boord — breng eigen wijn mee! Alle servies aanwezig. Verse fruits de mer worden aan boord bereid.
+      </div>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Vertrekpunt</div><div class="value">Parking du Port d'Arcachon<br>(Audrey stuurt GPS-coördinaten)</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📞</div>
+          <div><div class="label">Contact</div><div class="value">Audrey Ducros<br>06 58 95 12 24</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">🌐</div>
+          <div><div class="label">Website</div><div class="value"><a href="https://www.baladebateauarcachon.fr/" target="_blank">baladebateauarcachon.fr</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Workshop Matthias -->
+  <div class="stop-detail">
+    <div class="stop-detail-header">
+      <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=1200&q=80" alt="Wijnworkshop proeverij" loading="lazy">
+      <div class="overlay">
+        <div class="type-badge">Wijnworkshop & Formatie</div>
+        <h3>Workshop bij Matthias Seignette</h3>
+      </div>
+    </div>
+    <div class="stop-detail-body">
+      <p><strong>Matthias Seignette</strong> is onze vaste contactpersoon in Bordeaux en de drijvende kracht achter deze wijnreis. Als gediplomeerd wijnexpert (WSET) organiseert hij een speciale workshop voor De 6de Fles.</p>
+      <p>Matthias heeft een diep netwerk — van Grand Crus tot ambachtelijke biodynamische domeinen. Zijn club de dégustation gaf ons toegang tot unieke, persoonlijke bezoeken.</p>
+
+      <div class="photo-gallery two-col">
+        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80" alt="Wijnproeverij glazen" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1567529692333-de9fd6772897?w=600&q=80" alt="Wijn educatie" loading="lazy">
+      </div>
+
+      <div class="stop-info-grid">
+        <div class="stop-info-item">
+          <div class="icon">📍</div>
+          <div><div class="label">Adres</div><div class="value">35 Avenue Pasteur<br>33140 Villenave-d'Ornon</div></div>
+        </div>
+        <div class="stop-info-item">
+          <div class="icon">📞</div>
+          <div><div class="label">Contact</div><div class="value">Matthias Seignette<br>+33 (0) 767 5121 74<br>matthias.seignette@gmail.com</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- DAG 5 — ZONDAG 19 APRIL -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="day-section" id="dag5">
+  <div class="day-header">
+    <div class="day-number">Dag 5</div>
+    <h2>Retour naar België</h2>
+    <div class="date">Zondag 19 april 2026</div>
+  </div>
+
+  <img class="hero-banner" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80" alt="Weg door Frans landschap" loading="lazy">
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot food"></div>
+      <div class="timeline-time">08:00</div>
+      <div class="timeline-title">Petit déjeuner & Vertrek</div>
+      <div class="timeline-meta">Angoulême centre</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot drive"></div>
+      <div class="timeline-time">19:00</div>
+      <div class="timeline-title">Aankomst Hasselt — Welkom thuis!</div>
+      <div class="timeline-meta">Luikersteenweg 37, 3500 Hasselt, België</div>
+      <div class="travel-badge">🚗 ~890 km · ±8u30 rijden</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- RESTAURANTS TIPS MATTHIAS -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="day-section">
+  <div class="section-header">
+    <h2>Restauranttips van Matthias</h2>
+    <p>Persoonlijke aanbevelingen in Bordeaux Centre</p>
+  </div>
+
+  <div class="restaurants-tip">
+    <h4>🍴 Uitgelezen adressen in Bordeaux</h4>
+    <div class="resto-item">
+      <div class="resto-name">Le Carreau</div>
+      <div class="resto-desc">Bordeaux centre — Bistrot van kwaliteit, typisch Frans. Sympathieke wijnkaart. "Als ik niet weet waar ik heen moet, ga ik hier — altijd tevreden."</div>
+    </div>
+    <div class="resto-item">
+      <div class="resto-name">L'Avant Comptoir</div>
+      <div class="resto-desc">Bordeaux centre — Fantastische plek met diverse kleine gerechtjes om te delen. Leuke wijnkaart.</div>
+    </div>
+    <div class="resto-item">
+      <div class="resto-name">El Nacional</div>
+      <div class="resto-desc">Quartier des Chartrons — Klein restaurant, vlees van hoge kwaliteit. Argentijnse eigenaar. Eenvoudige maar goede wijnkaart.</div>
+    </div>
+    <div class="resto-item">
+      <div class="resto-name">La Table de Bécassine</div>
+      <div class="resto-desc">Cours Pasteur — Beroemd voor gerijpt vlees van topkwaliteit. Gevestigde naam, nu bij Place de la Victoire.</div>
+    </div>
+    <div class="resto-item">
+      <div class="resto-name">Bar à Vins Le Sobre</div>
+      <div class="resto-desc">Wijnbar met uitgebreide selectie. De Koreaanse eigenaar is een vriend van Matthias. Niet enkel charcuterie — ook verzorgde bereidingen.</div>
+    </div>
+    <div class="resto-item">
+      <div class="resto-name">Complanterra</div>
+      <div class="resto-desc">Matthias' favoriete wijnbar. Het koppel dat het runt zijn vrienden. Top selectie biodynamie & nature-wijnen. Zorgvuldige gerechten. "Ik kom er vaak!"</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- CONTACTS -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="contacts-section">
+  <h2>Contacten & Adressen</h2>
+  <div class="contacts-grid">
+    <div class="contact-card">
+      <h4>🧑‍🍳 Matthias Seignette</h4>
+      <p>Onze gids & wijnexpert in Bordeaux</p>
+      <p>📞 +33 (0) 767 5121 74</p>
+      <p>✉️ matthias.seignette@gmail.com</p>
+      <p>📍 35 Av. Pasteur, 33140 Villenave-d'Ornon</p>
+    </div>
+    <div class="contact-card">
+      <h4>🏨 Auberge de Crêpé</h4>
+      <p>📞 Yasmine — 05 49 32 97 61</p>
+      <p>📍 99 Route d'Aiffres, 79270 Saint-Symphorien</p>
+      <p>🌐 auberge-de-crespe.fr</p>
+    </div>
+    <div class="contact-card">
+      <h4>🍷 Vignobles Moze-Berthon</h4>
+      <p>📞 Mickael — 06 99 15 48 15</p>
+      <p>📍 2 Route de Négrit, 33570 Montagne</p>
+    </div>
+    <div class="contact-card">
+      <h4>🍷 Domaine Les Carmels</h4>
+      <p>📞 Sophie — 06 32 24 35 79</p>
+      <p>📞 Yorick — 06 32 54 93 78</p>
+      <p>📍 Martindoit, 33550 Langoiran</p>
+    </div>
+    <div class="contact-card">
+      <h4>🏰 Château Olivier</h4>
+      <p>📞 Marine Le Gall — 07 85 84 98 06</p>
+      <p>📞 Domein — +33 5 56 64 73 31</p>
+      <p>📍 175 Av. de Bordeaux, 33850 Léognan</p>
+    </div>
+    <div class="contact-card">
+      <h4>🏨 Maison Darroze</h4>
+      <p>📍 95 Cours du Gén. Leclerc, 33210 Langon</p>
+      <p>🌐 darroze.com</p>
+    </div>
+    <div class="contact-card">
+      <h4>🍷 Château Pont de Brion</h4>
+      <p>📞 Pascal Molinari — 05 56 63 09 52</p>
+      <p>📍 42 Rte de Saint-Pey, 33210 Langon</p>
+    </div>
+    <div class="contact-card">
+      <h4>🍷 Vignobles Cazebonne</h4>
+      <p>📞 J-B Duquesne — 06 89 77 42 12</p>
+      <p>📍 184 Peyron, 33210 St-Pierre-de-Mons</p>
+    </div>
+    <div class="contact-card">
+      <h4>🍷 Château Léhoul</h4>
+      <p>📞 Eric Fonta — 06 50 31 33 52</p>
+      <p>📍 Rte d'Auros, 33210 Langon</p>
+    </div>
+    <div class="contact-card">
+      <h4>🚢 Balade Bateau Arcachon</h4>
+      <p>📞 Audrey Ducros — 06 58 95 12 24</p>
+      <p>🌐 baladebateauarcachon.fr</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="logo">De 6de Fles</div>
+  <p>WIJNREIS BORDEAUX · 15–19 APRIL 2026</p>
+  <p style="margin-top: 10px;">À votre santé! 🥂</p>
+</footer>
+
+</body>
+</html>
